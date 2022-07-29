@@ -20,6 +20,9 @@ class Psr4AutoloaderClass
         $this->addNamespace(NAMESPACE_VIEW_PREFIX, VIEW_DIR_PATH);
         $this->addNamespace(NAMESPACE_MODEL_PREFIX, __DIR__ . '/models');
         $this->addNamespace(NAMESPACE_CONFIG_PREFIX, __DIR__ . '/models/config');
+        $this->addNamespace(NAMESPACE_CONFIG_PREFIX, __DIR__ . '/models/config');
+        $this->addNamespace("Twig\\", __DIR__ . '/vendor/twig/twig/src');
+        $this->addNamespace("Twig\\Loader\\", __DIR__ . '/vendor/twig/twig/src/Loader');
     }
 
     public function addNamespace($prefix, $base_dir, $prepend = false)
@@ -105,7 +108,7 @@ class Psr4AutoloaderClass
     protected function requireFile($file)
     {
         if (file_exists($file)) {
-            require $file;
+            require($file);
             return true;
         }
         return false;
