@@ -50,41 +50,41 @@ class Task
 
     public function getAllTasks(int $limitTaskNumberFrom, int $limitTaskNumberTo): array
     {
-        $query = "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id";
-        $stmt = DBClass::getConnection()->prepare($query);
+        $stmt = DBClass::getConnection()->prepare($this->selectQuery . " LIMIT ?,?");
+        $stmt->bind_param("ii", $limitTaskNumberFrom,$limitTaskNumberTo);
         $stmt->execute();
         $result = $stmt->get_result();
         return $this->getDataByResult($result);
     }
 
-    public function getTasksByDescription(string $value): array
+    public function getTasksByDescription(string $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): array
     {
-        $query =  "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id WHERE description LIKE ?";
+        $query =  $this->selectQuery . " WHERE description LIKE ? LIMIT ?,?";
         $param = "%$value%";
-        $result = $this-> getQueryWithParamResult($query, "s", $param);
+        $result = $this-> getQueryWithParamsResult($query, "s", $param, $limitTaskNumberFrom,  $limitTaskNumberTo);
         return  $this->getDataByResult($result);
     }
 
-    public function getTasksByStatus(string $value): array
+    public function getTasksByStatus(int $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): array
     {
-        $query =  "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id WHERE status=?";
-        $result = $this-> getQueryWithParamResult($query, "i", $value);
+        $query =  $this->selectQuery . " WHERE status=? LIMIT ?,?";
+        $result = $this-> getQueryWithParamsResult($query, "i", $value, $limitTaskNumberFrom, $limitTaskNumberTo);
         return  $this->getDataByResult($result);
     }
 
-    public function getTasksByAuthorName(string $value): array
+    public function getTasksByAuthorName(string $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): array
     {
-        $query =  "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id WHERE Author.name LIKE ?";
+        $query =  $this->selectQuery .  " WHERE Author.name LIKE ? LIMIT ?,?";
         $param = "%$value%";
-        $result = $this-> getQueryWithParamResult($query, "s", $param);
+        $result = $this-> getQueryWithParamsResult($query, "s", $param, $limitTaskNumberFrom, $limitTaskNumberTo);
         return  $this->getDataByResult($result);
     }
 
-    public function getTasksByEmail(string $value): array
+    public function getTasksByEmail(string $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): array
     {
-        $query =  "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id WHERE Author.email LIKE ?";
+        $query =  $this->selectQuery . " WHERE Author.email LIKE ? LIMIT ?,?";
         $param = "%$value%";
-        $result = $this-> getQueryWithParamResult($query, "s", $param);
+        $result = $this-> getQueryWithParamsResult($query, "s", $param, $limitTaskNumberFrom, $limitTaskNumberTo);
         return  $this->getDataByResult($result);
     }
 
@@ -100,7 +100,15 @@ class Task
         return $data;
     }
 
-    private function getQueryWithParamResult(string $query,string $paramType,string $value): mysqli_result
+    private function getQueryWithParamsResult(string $query, string $paramType, string $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): mysqli_result
+    {
+        $stmt = DBClass::getConnection()->prepare($query);
+        $stmt->bind_param($paramType . "ii", $value, $limitTaskNumberFrom, $limitTaskNumberTo);
+        $stmt->execute();
+        return $stmt->get_result();
+    }
+
+    private function getQueryWithParamResult(string $query, string $paramType, string $value): mysqli_result
     {
         $stmt = DBClass::getConnection()->prepare($query);
         $stmt->bind_param($paramType, $value);
