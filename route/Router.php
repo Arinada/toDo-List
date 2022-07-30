@@ -33,9 +33,6 @@ class Router
         $controllerCtrClassname = $controllerData['classname'];
         $controllerClassname = NAMESPACE_CONTROLLER_PREFIX . $controllerCtrClassname;
         $controllerMethod = $controllerData['method'];
-        $controllerData['params']['filter'] = $_GET['filter'] ?? null;
-        $controllerData['params']['value'] = $_GET['value'] ?? null;
-        $controllerData['params']['page'] = $_GET['page'] ?? null;
         $controllerParamValues = $controllerData['params'];
 
         if ($controllerCtrClassname !== null) {
