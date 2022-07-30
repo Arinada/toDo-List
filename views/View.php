@@ -15,9 +15,8 @@ class View
         }
     }
 
-    public function renderStartPage($viewName, $tasks = null, $authorized = null)
+    public function renderStartPage($viewName, $context, $authorized = null)
     {
-        $context['tasks'] = $tasks;
         $this->normalizeName($viewName);
         $template = $this->twig->load('main_page.html');
         echo $template->render($context);
