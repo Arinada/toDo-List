@@ -13,4 +13,11 @@ $(document).ready(function() {
             window.location.search = urlParams;
         }
     });
+    
+    $(".page-item").click(function () {
+        let pageNumber = $(this).text();
+        const urlParams = new URLSearchParams(window.location.search)
+        urlParams.set("page", pageNumber);
+        window.location.search = urlParams;
+    });
 });
