@@ -16,8 +16,8 @@ class View
 
     public function renderTemplate($viewName, $context = [], $authorized = null)
     {
-        $this->normalizeName($viewName);
-        $template = $this->twig->load('main_page.html');
+        $templateName = $this->normalizeName($viewName) . ".html";
+        $template = $this->twig->load($templateName);
         echo $template->render($context);
     }
 
@@ -30,6 +30,6 @@ class View
             }
             $normalizedName = $normalizedName . strtolower($name[$i]);
         }
-        $this->templateName = $normalizedName;
+        return $normalizedName;
     }
 }
