@@ -16,7 +16,7 @@ class Router
     {
         $this->declareRoutes();
         $urlStr = $this->getURLString();
-        $controllerData = null;
+        $controllerData = [];
 
         foreach ($this->routes as $key => $value) {
             if ($key === $urlStr) {
