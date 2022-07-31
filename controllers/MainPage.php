@@ -36,10 +36,9 @@ class MainPage
         $limitTaskNumberFrom = self::TASKS_NUMBER_BY_PAGE * ($pageNumber - 1);
         $limitTaskNumberTo = self::TASKS_NUMBER_BY_PAGE * $pageNumber;
 
-        if (!empty($value)) {
-            $numberOfTasks = $this->getTasksNumberByFilter($taskModel, $filter,  $value);
-            $tasks = $this->getTasksByFilter($taskModel, $filter, $value, $limitTaskNumberFrom, $limitTaskNumberTo);
-        }
+        $numberOfTasks = $this->getTasksNumberByFilter($taskModel, $filter,  $value);
+        $tasks = $this->getTasksByFilter($taskModel, $filter, $value, $limitTaskNumberFrom, $limitTaskNumberTo);
+
         $context['pages_number'] = $this->divRoundUp($numberOfTasks, self::TASKS_NUMBER_BY_PAGE);
 
 
