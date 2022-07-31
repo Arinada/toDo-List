@@ -44,6 +44,7 @@ class MainPage
 
         foreach ($tasks as $index => $task) {
              $context['tasks'][$index] = [
+                 'id' => $task['id'],
                  'author_name' => $task['name'],
                  'author_email' => $task['email'],
                  'description' => $task['description'],
