@@ -4,7 +4,6 @@ namespace App\Views;
 
 class View
 {
-    private string $templateName;
     private \Twig\Environment $twig;
 
     public function __construct()
@@ -15,7 +14,7 @@ class View
         }
     }
 
-    public function renderStartPage($viewName, $context, $authorized = null)
+    public function renderTemplate($viewName, $context = [], $authorized = null)
     {
         $this->normalizeName($viewName);
         $template = $this->twig->load('main_page.html');
