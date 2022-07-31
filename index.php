@@ -10,6 +10,8 @@ const NAMESPACE_VIEW_PREFIX = NAMESPACE_APP_PREFIX . 'Views\\';
 const NAMESPACE_MODEL_PREFIX = NAMESPACE_APP_PREFIX . 'Models\\';
 const NAMESPACE_CONFIG_PREFIX = NAMESPACE_APP_PREFIX . 'Configs\\';
 
+session_start();
+
 $loader = new App\Autoloader\Psr4AutoloaderClass();
 $loader->register();
 
