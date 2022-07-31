@@ -60,5 +60,36 @@
     </ul>
 </nav>
 </div>
+<!-- Modal -->
+<form class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="addCardModalLabel" aria-hidden="true"  action="/add-card" method="POST">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCardModalLabel">Add card</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for="author-name" class="col-form-label">Author name:</label>
+                        <input type="text" class="form-control" id="author-name" name="author-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-form-label">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <textarea class="form-control" id="description" name="description"></textarea>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="close btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="add-card-btn btn btn-primary">Add card</button>
+            </div>
+        </div>
+    </div>
+</form>
 </body>
 </html>
