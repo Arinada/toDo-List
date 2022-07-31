@@ -79,10 +79,9 @@ class MainPage
                 return $taskModel->getNumberOfTasksByAuthorName($value);
             case "Email":
                 return $taskModel->getNumberOfTasksByEmail($value);
-            case "Filter":
+            default:
                 return $taskModel->getNumberOfAllTasks();
         }
-        return 0;
     }
 
     private function getTasksByFilter(Task $taskModel,string $filter,string $value, int $limitTaskNumberFrom, int $limitTaskNumberTo): array
@@ -97,10 +96,9 @@ class MainPage
                 return $taskModel->getTasksByAuthorName($value, $limitTaskNumberFrom, $limitTaskNumberTo);
             case "Email":
                 return $taskModel->getTasksByEmail($value, $limitTaskNumberFrom, $limitTaskNumberTo);
-            case "Filter":
+            default:
                 return $taskModel->getAllTasks($limitTaskNumberFrom, $limitTaskNumberTo);
         }
-        return [];
     }
 
 }
