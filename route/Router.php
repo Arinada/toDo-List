@@ -33,7 +33,7 @@ class Router
         $controllerCtrClassname = $controllerData['classname'];
         $controllerClassname = NAMESPACE_CONTROLLER_PREFIX . $controllerCtrClassname;
         $controllerMethod = $controllerData['method'];
-        $controllerParamValues = $controllerData['params'];
+        $controllerParamValues = $controllerData['params'] ?? [];
 
         if ($controllerCtrClassname !== null) {
             $controller = new  $controllerClassname($controllerCtrClassname);
