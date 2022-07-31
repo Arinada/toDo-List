@@ -27,8 +27,8 @@ class MainPage
     {
         $context = [];
         $taskModel = new Task();
-        $filter = $_GET['filter'];
-        $value = $_GET['value'];
+        $filter = $_GET['filter'] ?? "Filter";
+        $value = $_GET['value'] ?? "";
         $pageNumber = $_GET['page'] ?? 1;
         $tasks = [];
         $numberOfTasks = 0;
