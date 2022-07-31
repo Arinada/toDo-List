@@ -30,8 +30,7 @@ class MainPage
         $filter = $_GET['filter'] ?? "Filter";
         $value = $_GET['value'] ?? "";
         $pageNumber = $_GET['page'] ?? 1;
-        $tasks = [];
-        $numberOfTasks = 0;
+        $context['authorized'] = $_SESSION['is_admin'];
 
         $limitTaskNumberFrom = self::TASKS_NUMBER_BY_PAGE * ($pageNumber - 1);
         $limitTaskNumberTo = self::TASKS_NUMBER_BY_PAGE * $pageNumber;
