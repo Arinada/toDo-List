@@ -6,10 +6,33 @@ use mysqli_result;
 
 class Task
 {
-    private string $selectQuery = "SELECT * FROM Task INNER JOIN Author ON Author.id = Task.author_id";
+    private string $selectQuery = "SELECT Task.*, Author.name, Author.email FROM Task INNER JOIN Author ON Author.id = Task.author_id";
     private string $countQuery = "SELECT count(*) as task_number FROM Task INNER JOIN Author ON Author.id = Task.author_id";
 
-    public function getNumberOfAllTasks(): int
+    public function add(int $authorId, $description) {
+        $query = "INSERT INTO Task(author_id, description, status) VALUES (?, ?, 0)";
+        $stmt = DBClass::getConnection()->prepare($query);
+        $stmt->bind_param("is", $authorId, $description);
+        $stmt->execute();
+    }
+
+    public function update(int $id, string $description, int $status): void
+    {
+        $query = "UPDATE Task SET status = ?, description = ? WHERE id = ?";
+        $stmt = DBClass::getConnection()->prepare($query);
+        $stmt->bind_param("isi", $status, $description, $id);
+        $stmt->execute();
+    }
+
+    public function delete(int $id): void
+    {
+        $query = "DELETE FROM Task WHERE id = ?";
+        $stmt = DBClass::getConnection()->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
+
+        public function getNumberOfAllTasks(): int
     {
         $stmt = DBClass::getConnection()->prepare($this->countQuery);
         $stmt->execute();
