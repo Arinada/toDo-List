@@ -67,7 +67,7 @@ class MainPage
         return $result;
     }
 
-    private function getTasksNumberByFilter(Task $taskModel,string $filter,string $value): int
+    private function getTasksNumberByFilter(Task $taskModel, string $filter, string $value): int
     {
         switch ($filter) {
             case 'Description':
