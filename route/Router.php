@@ -69,6 +69,31 @@ class Router
                 'classname' => 'MainPage',
                 'method' => 'showStartPage',
                 'params' => null
+            ],
+            '/log-in' => [
+                'classname' => 'LoginPage',
+                'method' => 'showLoginPage',
+                'params' => null
+            ],
+            '/log-in-result' => [
+                'classname' => 'LoginPage',
+                'method' => 'showLoginResult',
+                'params' => null
+            ],
+            '/log-out' => [
+                'classname' => 'LoginPage',
+                'method' => 'logout',
+                'params' => null
+            ],
+            '/change-card' => [
+                'classname' => 'CardController',
+                'method' => 'changeCard',
+                'params' => null
+            ],
+            '/add-card' => [
+                'classname' => 'CardController',
+                'method' => 'add',
+                'params' => null
             ]
         ];
     }
