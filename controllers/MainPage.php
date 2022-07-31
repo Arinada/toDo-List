@@ -50,7 +50,7 @@ class MainPage
                  'status' => $task['status']
              ];
         }
-        $this->view->renderStartPage($this->viewName, $context);
+        $this->view->renderTemplate($this->viewName, $context);
         DBClass::getConnection()->close();
     }
 
